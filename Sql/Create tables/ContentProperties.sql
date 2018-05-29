@@ -1,0 +1,8 @@
+DROP TABLE IF EXISTS ContentProperties;
+CREATE TABLE ContentProperties
+(
+	'Id'         INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+	'Content'    INTEGER NOT NULL,
+    'Rotate'     INTEGER DEFAULT 0,
+	CONSTRAINT 'ContentPropertiesUrl_Fk' FOREIGN KEY (Content) REFERENCES UrlContents (Id) ON DELETE CASCADE
+);

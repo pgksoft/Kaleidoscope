@@ -1,0 +1,664 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{12D3AECB-A255-4250-AA0C-A3F0BCB526DB}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Kaleidoscope</RootNamespace>
+    <AssemblyName>Kaleidoscope</AssemblyName>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resourses\Kaleidoscope.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignColors, Version=1.1.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignColors.1.1.3\lib\net45\MaterialDesignColors.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=2.4.0.1044, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignThemes.2.4.0.1044\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLite.Net, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SQLite.Net.Core-PCL.3.1.1\lib\portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1\SQLite.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLite.Net.Platform.Generic, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SQLite.Net-PCL.3.1.1\lib\net40\SQLite.Net.Platform.Generic.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLite.Net.Platform.Win32, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SQLite.Net-PCL.3.1.1\lib\net4\SQLite.Net.Platform.Win32.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite, Version=1.0.107.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Core.1.0.107.0\lib\net46\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.EF6, Version=1.0.107.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.EF6.1.0.107.0\lib\net46\System.Data.SQLite.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq, Version=1.0.107.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Linq.1.0.107.0\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Helpers\CatalogConverter.cs" />
+    <Compile Include="Helpers\ColorSet.cs" />
+    <Compile Include="Helpers\ContentMenuItem.cs" />
+    <Compile Include="Helpers\FillTypeColors.cs" />
+    <Compile Include="Helpers\ManagerMediaPages .cs" />
+    <Compile Include="Helpers\NotEmptyValidationRule.cs" />
+    <Compile Include="Helpers\VisibilityPopupBoxFromImageSizeConverter.cs" />
+    <Compile Include="Localization\AboutTheProgramRes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AboutTheProgramRes.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Localization\ColorsRes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ColorsRes.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Localization\ContentCatalogItemsRes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ContentCatalogItemsRes.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Localization\ContentCatalogRes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ContentCatalogRes.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Localization\ContentCommentsRes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ContentCommentsRes.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Localization\ContentFoldersRes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ContentFoldersRes.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Localization\ContentImageTypesRes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ContentImageTypesRes.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Localization\ContentVideoTypesRes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ContentVideoTypesRes.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Localization\DMLRes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DMLRes.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Localization\ImagesRes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ImagesRes.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Localization\MessageConfirmRes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MessageConfirmRes.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Localization\SettingOptionsRes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SettingOptionsRes.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Localization\TicTacToeRes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TicTacToeRes.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Catalog.cs" />
+    <Compile Include="Model\ConditionShowContent.cs" />
+    <Compile Include="Model\ContentDB.cs" />
+    <Compile Include="Model\ContentExtention.cs" />
+    <Compile Include="Model\ContentProperty.cs" />
+    <Compile Include="Model\ContentReferenses.cs" />
+    <Compile Include="Model\ContentUtilities.cs" />
+    <Compile Include="Model\ListContent.cs" />
+    <Compile Include="Model\ModelBase.cs" />
+    <Compile Include="Model\ModelUtilities.cs" />
+    <Compile Include="Model\PatternSearchFile.cs" />
+    <Compile Include="Model\PatternSearchFileComparer.cs" />
+    <Compile Include="Model\TableReference.cs" />
+    <Compile Include="Model\UrlContent.cs" />
+    <Compile Include="Model\VCatalog.cs" />
+    <Compile Include="Model\VCatalogExt.cs" />
+    <Compile Include="Model\VRefPathway.cs" />
+    <Compile Include="Model\VTreeCatalog.cs" />
+    <Compile Include="Model\VUrlContent.cs" />
+    <Compile Include="ViewDependencyProperty\ContentViewDepProp.cs" />
+    <Compile Include="ViewDependencyProperty\DataGridViewDepProp.cs" />
+    <Compile Include="ViewDependencyProperty\DialogViewDepProp.cs" />
+    <Compile Include="ViewDialog\ChoiceDialog.xaml.cs">
+      <DependentUpon>ChoiceDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewDialog\EntityNameSelectDialog.xaml.cs">
+      <DependentUpon>EntityNameSelectDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewDialog\TableReferenceAddUpdDialog.xaml.cs">
+      <DependentUpon>TableReferenceAddUpdDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModelDialog\ChoiceDialogDictionaryViewModel.cs" />
+    <Compile Include="ViewModelDialog\EntityNameSelectDialogViewModel.cs" />
+    <Compile Include="ViewModelDialog\TableReferenceAddUpdDialogViewModel.cs" />
+    <Compile Include="ViewModel\AboutTheProgramViewModel.cs" />
+    <Compile Include="ViewModel\CatalogHeaderViewModel.cs" />
+    <Compile Include="ViewModel\CatalogViewModel.cs" />
+    <Compile Include="ViewModel\ContentHeaderViewModel.cs" />
+    <Compile Include="ViewModel\ContentMainHeaderControlViewModel.cs" />
+    <Compile Include="ViewModel\ContentViewModel.cs" />
+    <Compile Include="ViewModel\DirectoriesViewModel.cs" />
+    <Compile Include="ViewModel\FoldersHeaderViewModel.cs" />
+    <Compile Include="ViewModel\FoldersViewModel.cs" />
+    <Compile Include="ViewModel\KaleidoscopeHeaderViewModel.cs" />
+    <Compile Include="ViewModel\KaleidoscopeImagesHeaderViewModel.cs" />
+    <Compile Include="ViewModel\KaleidoscopeImagesViewModel.cs" />
+    <Compile Include="ViewModel\KaleidoscopeViewModel.cs" />
+    <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\OptionsMediaViewModel.cs" />
+    <Compile Include="ViewModel\PaletteThemeViewModel.cs" />
+    <Compile Include="ViewModel\SampleProgressDialogViewModel.cs" />
+    <Compile Include="ViewModel\SettingOptionsViewModel.cs" />
+    <Compile Include="ViewModel\TableReferenceHeaderControlViewModel.cs" />
+    <Compile Include="ViewModel\TicTacToeHeaderViewModel.cs" />
+    <Compile Include="ViewModel\TicTacToeViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="ViewModel\ViewModelBaseDialogHost.cs" />
+    <Compile Include="ViewModel\ViewModelPrimary.cs" />
+    <Compile Include="View\AboutTheProgram.xaml.cs">
+      <DependentUpon>AboutTheProgram.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AboutTheProgramHeader.xaml.cs">
+      <DependentUpon>AboutTheProgramHeader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Catalog.xaml.cs">
+      <DependentUpon>Catalog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CatalogHeader.xaml.cs">
+      <DependentUpon>CatalogHeader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Content.xaml.cs">
+      <DependentUpon>Content.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ContentHeader.xaml.cs">
+      <DependentUpon>ContentHeader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ContentMainHeaderControl.xaml.cs">
+      <DependentUpon>ContentMainHeaderControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CopyRightLogo.xaml.cs">
+      <DependentUpon>CopyRightLogo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Directories.xaml.cs">
+      <DependentUpon>Directories.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Folders.xaml.cs">
+      <DependentUpon>Folders.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\FoldersHeader.xaml.cs">
+      <DependentUpon>FoldersHeader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\KaleidoscopeHeader.xaml.cs">
+      <DependentUpon>KaleidoscopeHeader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\KaleidoscopeImages.xaml.cs">
+      <DependentUpon>KaleidoscopeImages.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\KaleidoscopeImagesHeader.xaml.cs">
+      <DependentUpon>KaleidoscopeImagesHeader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\KaleidoscopeOwn.xaml.cs">
+      <DependentUpon>KaleidoscopeOwn.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\OptionsMedia.xaml.cs">
+      <DependentUpon>OptionsMedia.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Palette.xaml.cs">
+      <DependentUpon>Palette.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PaletteTheme.xaml.cs">
+      <DependentUpon>PaletteTheme.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SampleProgressDialog.xaml.cs">
+      <DependentUpon>SampleProgressDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SettingOptions.xaml.cs">
+      <DependentUpon>SettingOptions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SettingOptionsHeader.xaml.cs">
+      <DependentUpon>SettingOptionsHeader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TableReferenceHeaderControl.xaml.cs">
+      <DependentUpon>TableReferenceHeaderControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TicTacToe.xaml.cs">
+      <DependentUpon>TicTacToe.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TicTacToeHeader.xaml.cs">
+      <DependentUpon>TicTacToeHeader.xaml</DependentUpon>
+    </Compile>
+    <Page Include="HelpersView\MessageConfirm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HelpersViewModel\MessageConfirmViewModel.cs" />
+    <Compile Include="HelpersView\MessageConfirm.xaml.cs">
+      <DependentUpon>MessageConfirm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\DelegateCommand.cs" />
+    <Compile Include="Helpers\ErrorProcessing.cs" />
+    <Compile Include="Helpers\MainMenuItem.cs" />
+    <Compile Include="Helpers\MessageConfirmBox.cs" />
+    <Compile Include="Helpers\NotifyProperytChangedExtension.cs" />
+    <Compile Include="Helpers\Settings.cs" />
+    <Compile Include="Localization\MainWindowRes.Designer.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="ResourceDictionaries\CatalogDicRes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ResourceDictionaries\DataGridDicRes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ResourceDictionaries\ThemeButtonDicRes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewDialog\ChoiceDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewDialog\EntityNameSelectDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewDialog\TableReferenceAddUpdDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AboutTheProgram.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\AboutTheProgramHeader.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Catalog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CatalogHeader.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Content.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ContentHeader.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ContentMainHeaderControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CopyRightLogo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Directories.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Folders.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\FoldersHeader.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\KaleidoscopeHeader.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\KaleidoscopeImages.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\KaleidoscopeImagesHeader.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\KaleidoscopeOwn.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\OptionsMedia.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Palette.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\PaletteTheme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SampleProgressDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SettingOptions.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\SettingOptionsHeader.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\TableReferenceHeaderControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TicTacToe.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TicTacToeHeader.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Localization\AboutTheProgramRes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AboutTheProgramRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Localization\AboutTheProgramRes.ru.resx" />
+    <EmbeddedResource Include="Localization\AboutTheProgramRes.uk.resx" />
+    <EmbeddedResource Include="Localization\ColorsRes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ColorsRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Localization\ColorsRes.ru.resx" />
+    <EmbeddedResource Include="Localization\ColorsRes.uk.resx" />
+    <EmbeddedResource Include="Localization\ContentCatalogItemsRes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ContentCatalogItemsRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Localization\ContentCatalogItemsRes.ru.resx" />
+    <EmbeddedResource Include="Localization\ContentCatalogItemsRes.uk.resx" />
+    <EmbeddedResource Include="Localization\ContentCatalogRes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ContentCatalogRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Localization\ContentCatalogRes.ru.resx" />
+    <EmbeddedResource Include="Localization\ContentCatalogRes.uk.resx" />
+    <EmbeddedResource Include="Localization\ContentCommentsRes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ContentCommentsRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Localization\ContentCommentsRes.ru.resx" />
+    <EmbeddedResource Include="Localization\ContentCommentsRes.uk.resx" />
+    <EmbeddedResource Include="Localization\ContentFoldersRes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ContentFoldersRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Localization\ContentFoldersRes.ru.resx" />
+    <EmbeddedResource Include="Localization\ContentFoldersRes.uk.resx" />
+    <EmbeddedResource Include="Localization\ContentImageTypesRes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ContentImageTypesRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Localization\ContentImageTypesRes.ru.resx" />
+    <EmbeddedResource Include="Localization\ContentImageTypesRes.uk.resx" />
+    <EmbeddedResource Include="Localization\ContentVideoTypesRes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ContentVideoTypesRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Localization\ContentVideoTypesRes.ru.resx" />
+    <EmbeddedResource Include="Localization\ContentVideoTypesRes.uk.resx" />
+    <EmbeddedResource Include="Localization\DMLRes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DMLRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Localization\DMLRes.ru.resx" />
+    <EmbeddedResource Include="Localization\DMLRes.uk.resx" />
+    <EmbeddedResource Include="Localization\ImagesRes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ImagesRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Localization\ImagesRes.ru.resx" />
+    <EmbeddedResource Include="Localization\ImagesRes.uk.resx" />
+    <EmbeddedResource Include="Localization\MainWindowRes.resx" />
+    <EmbeddedResource Include="Localization\MainWindowRes.ru.resx" />
+    <EmbeddedResource Include="Localization\MainWindowRes.uk.resx" />
+    <EmbeddedResource Include="Localization\MessageConfirmRes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>MessageConfirmRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Localization\MessageConfirmRes.ru.resx" />
+    <EmbeddedResource Include="Localization\MessageConfirmRes.uk.resx" />
+    <EmbeddedResource Include="Localization\SettingOptionsRes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SettingOptionsRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Localization\SettingOptionsRes.ru.resx" />
+    <EmbeddedResource Include="Localization\SettingOptionsRes.uk.resx" />
+    <EmbeddedResource Include="Localization\TicTacToeRes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>TicTacToeRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Localization\TicTacToeRes.ru.resx" />
+    <EmbeddedResource Include="Localization\TicTacToeRes.uk.resx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="DB\content.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\LibRandomFill\RandomFill\RandomFill.csproj">
+      <Project>{0374c0c2-b256-421d-b666-68da41a04871}</Project>
+      <Name>RandomFill</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\LocalizatorHelper\LocalizatorHelper.csproj">
+      <Project>{e9a64bd9-737b-4046-ac54-647ec51a2852}</Project>
+      <Name>LocalizatorHelper</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resourses\MyPhoto.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resourses\Kaleidoscope.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resourses\Regular\Png 32x32\asterisk-orange-icon.png" />
+    <Resource Include="Resourses\Regular\Png 32x32\Badge Alt Exclamation.png" />
+    <Resource Include="Resourses\Regular\Png 32x32\Error.png" />
+    <Resource Include="Resourses\Regular\Png 32x32\Question.png" />
+    <Resource Include="Resourses\Regular\Png 32x32\Symbol Information 2.png" />
+    <Resource Include="Resourses\Regular\Png 32x32\Symbol Restricted 2.png" />
+    <Resource Include="Resourses\Regular\Png 32x32\Symbol Stop.png" />
+    <Resource Include="Resourses\Regular\Png 32x32\Warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resourses\Regular\Png 32x32\ToolsWizard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resourses\ms-icon-310x310.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resourses\EntityFramework.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resourses\SQLite.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resourses\KColors.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resourses\vote-yes-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resourses\Photos-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resourses\TicTacToe02.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resourses\MVVMtoolkit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resourses\Folder-Content.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resourses\UID\Regular\Symbol Add 2.png" />
+    <Resource Include="Resourses\UID\Regular\Symbol Delete 2.png" />
+    <Resource Include="Resourses\UID\Regular\Symbol Edit 2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resourses\Commands\Find Delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resourses\UID\Regular\replace.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resourses\UID\Regular\Symbol Add 2 root.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resourses\UID\Regular\Sync-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resourses\Movies.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resourses\size_both_32.png" />
+    <Resource Include="Resourses\size_height_32.png" />
+    <Resource Include="Resourses\size_width_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resourses\size_separately_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resourses\size_height_dark32.png" />
+    <Resource Include="Resourses\size_width_dark32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resourses\modeShowContent_List_32.png" />
+    <Resource Include="Resourses\modeShowContent_OneFromListl_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resourses\dont refresh.png" />
+    <Resource Include="Resourses\reload_refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resourses\images.png" />
+    <Resource Include="Resourses\movie.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\System.Data.SQLite.Core.1.0.107.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.107.0\build\net46\System.Data.SQLite.Core.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Данный проект ссылается на пакеты NuGet, отсутствующие на этом компьютере. Используйте восстановление пакетов NuGet, чтобы скачать их.  Дополнительную информацию см. по адресу: http://go.microsoft.com/fwlink/?LinkID=322105. Отсутствует следующий файл: {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\System.Data.SQLite.Core.1.0.107.0\build\net46\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Data.SQLite.Core.1.0.107.0\build\net46\System.Data.SQLite.Core.targets'))" />
+  </Target>
+</Project>

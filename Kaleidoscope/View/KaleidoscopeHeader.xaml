@@ -1,0 +1,115 @@
+﻿<UserControl x:Class="Kaleidoscope.View.KaleidoscopeHeader"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mtdsgn="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:Kaleidoscope.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="40" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style x:Key="ButtonFloatAction" TargetType="Button" BasedOn="{StaticResource MaterialDesignFloatingActionMiniLightButton}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsProcessing}" Value="False">
+                    <Setter Property="ToolTip" Value="{Binding Source={StaticResource helper}, Path=[ColorsRes.IsReadyRotation]}"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsProcessing}" Value="True">
+                    <Setter Property="ToolTip" Value="{Binding Source={StaticResource helper}, Path=[ColorsRes.IsMoveRotation]}"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <WrapPanel Margin="0,3,16,3" HorizontalAlignment="Right">
+
+            <Button Width="30" Height="30" Style="{StaticResource ButtonFloatAction}"
+                    mtdsgn:ButtonProgressAssist.IndicatorForeground="{DynamicResource  SecondaryAccentBrush }"
+                    mtdsgn:ButtonProgressAssist.IndicatorBackground="{DynamicResource  PrimaryHueLightBrush }"   
+                    Command="{Binding FillProcessingCommand}"
+                    mtdsgn:ButtonProgressAssist.IsIndicatorVisible="{Binding IsProcessing}"
+                    mtdsgn:ButtonProgressAssist.IsIndeterminate="{Binding IsRotation}"
+                    mtdsgn:ButtonProgressAssist.Value="{Binding StateProcess}">
+                <mtdsgn:PackIcon Height="19" Width="19">
+                    <mtdsgn:PackIcon.Style>
+                        <Style TargetType="mtdsgn:PackIcon">
+                            <Setter Property="Kind" Value="Play" />
+                            <Setter Property="ToolTip" Value="{Binding Source={StaticResource helper}, Path=[ColorsRes.IsReadyRotation]}"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsProcessing}" Value="True">
+                                    <Setter Property="Kind" Value="Autorenew" />
+                                    <Setter Property="ToolTip" Value="{Binding Source={StaticResource helper}, Path=[ColorsRes.IsMoveRotation]}"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </mtdsgn:PackIcon.Style>
+                </mtdsgn:PackIcon>
+            </Button>
+
+            <TextBlock Text="{Binding Source={StaticResource helper}, Path=[ColorsRes.IntervalCaption]}" 
+                       Padding="8,2,2,2" Margin="3" FontWeight="Medium"/>
+            <Border Background="{DynamicResource PrimaryHueLightBrush}" CornerRadius="3">
+                <ComboBox Padding="2" Margin="3" Width="50" mtdsgn:HintAssist.Hint="Virtualisation"
+                          FontWeight="Medium"    
+                          Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"
+                          ItemsSource="{Binding ListTimerInterval}"
+                          SelectedValue="{Binding SelectedTimerInterval}">
+                    <ComboBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel />
+                        </ItemsPanelTemplate>
+                    </ComboBox.ItemsPanel>
+                </ComboBox>
+            </Border>
+
+            <TextBlock Text="{Binding Source={StaticResource helper}, Path=[ColorsRes.FillTypeCaption]}" 
+                       Padding="8,2,2,2" Margin="3" FontWeight="Medium"/>
+            <Border Background="{DynamicResource PrimaryHueLightBrush}" CornerRadius="3">
+                <ComboBox Padding="2" Margin="3" Width="140" mtdsgn:HintAssist.Hint="Virtualisation" 
+                          FontWeight="Medium"                   
+                          Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"
+                          ItemsSource="{Binding ListOfFillTypes}"
+                          SelectedValue="{Binding SelectedValueFillTypes}"
+                          SelectedIndex="{Binding SelectedIndexFillTypes}">
+                    <ComboBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel />
+                        </ItemsPanelTemplate>
+                    </ComboBox.ItemsPanel>
+                </ComboBox>
+            </Border>
+
+            <TextBlock Text="{Binding Source={StaticResource helper}, Path=[ColorsRes.ColumnsCaption]}" 
+                       Padding="8,2,2,2" Margin="3" FontWeight="Medium"/>
+            <Border Background="{DynamicResource PrimaryHueLightBrush}" CornerRadius="3">
+                <ComboBox Padding="2" Margin="3" Width="40" mtdsgn:HintAssist.Hint="Virtualisation"
+                          FontWeight="Medium"    
+                          Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"
+                          ItemsSource="{Binding ListOfGridSize}"
+                          SelectedValue="{Binding SelectedValueColumns}">
+                    <ComboBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel />
+                        </ItemsPanelTemplate>
+                    </ComboBox.ItemsPanel>
+                </ComboBox>
+            </Border>
+
+            <TextBlock Text="{Binding Source={StaticResource helper}, Path=[ColorsRes.RowsCaption]}" 
+                       Padding="8,2,2,2" Margin="3" FontWeight="Medium"/>
+            <Border Background="{DynamicResource PrimaryHueLightBrush}" CornerRadius="3">
+                <ComboBox Padding="2" Margin="3" Width="40" mtdsgn:HintAssist.Hint="Virtualisation" 
+                          FontWeight="Medium"                   
+                          Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"
+                          ItemsSource="{Binding ListOfGridSize}"
+                          SelectedValue="{Binding SelectedValueRows}">
+                    <ComboBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel />
+                        </ItemsPanelTemplate>
+                    </ComboBox.ItemsPanel>
+                </ComboBox>
+            </Border>
+
+        </WrapPanel>
+    </Grid>
+</UserControl>

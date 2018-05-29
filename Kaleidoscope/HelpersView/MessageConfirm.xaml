@@ -1,0 +1,67 @@
+﻿<Window x:Class="Kaleidoscope.HelpersView.MessageConfirm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:mtdsgn="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:Kaleidoscope.HelpersView"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        mtdsgn:ShadowAssist.ShadowDepth="Depth2"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="False"
+        SizeToContent="WidthAndHeight"
+        Title="">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Kaleidoscope;component/ResourceDictionaries/ThemeButtonDicRes.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Border BorderThickness="2" BorderBrush="{StaticResource PrimaryHueMidBrush}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <mtdsgn:ColorZone Grid.Row="0" Height="30" mtdsgn:ShadowAssist.ShadowDepth="Depth2" Mode="Accent" >
+                <StackPanel Orientation="Horizontal" Margin="3">
+                    <Image Source="{Binding TitleImageUrl}" Width="24" Height="24" Visibility="{Binding TitleImageVisibility}"/>
+                    <TextBlock Text="{Binding Caption}" Margin="16,0,16,0"
+                           Style="{StaticResource MaterialDesignSubheadingTextBlock}" VerticalAlignment="Center"/>
+                </StackPanel>
+            </mtdsgn:ColorZone>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" Source="{Binding ImageUrl}" Width="{Binding ImageSize}" Height="{Binding ImageSize}" Margin="16" 
+                   VerticalAlignment="Top" Visibility="{Binding ImageVisibility}"/>
+                <TextBlock Grid.Column="1" Margin="16" FontWeight="Medium" TextWrapping="Wrap" MaxWidth="400"
+                       Text="{Binding Message}" VerticalAlignment="Center" HorizontalAlignment="{Binding MessageHorizontalAlignment}"/>
+            </Grid>
+            <StackPanel Grid.Row="2" Margin="0,8,0,8" HorizontalAlignment="Center" Orientation="Horizontal">
+                <Button Style="{StaticResource FlatButton}"
+                        Command="{Binding OkCommand}" IsDefault="True" Visibility="{Binding OkVisibility}"
+                        Content="{Binding Source={StaticResource helper}, Path=[MessageConfirmRes.OkCaption]}" />
+                <Button Style="{StaticResource FlatButton}"
+                        Command="{Binding YesCommand}" IsDefault="True" Visibility="{Binding YesVisibility}"
+                        Content="{Binding Source={StaticResource helper}, Path=[MessageConfirmRes.YesCaption]}"/>
+                <Button Style="{StaticResource FlatButton}" 
+                        Command="{Binding NoCommand}" IsCancel="True" Visibility="{Binding NoVisibility}" 
+                        Content="{Binding Source={StaticResource helper}, Path=[MessageConfirmRes.NoCaption]}" />
+                <Button Style="{StaticResource FlatButton}" 
+                        Command="{Binding CancelCommand}"  IsCancel="True" Visibility="{Binding CancelVisibility}" 
+                        Content="{Binding Source={StaticResource helper}, Path=[MessageConfirmRes.CancelCaption]}" />
+            </StackPanel>
+        </Grid>
+    </Border>
+
+</Window>

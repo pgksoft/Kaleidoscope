@@ -1,0 +1,47 @@
+﻿<Application x:Class="Kaleidoscope.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Kaleidoscope"
+             xmlns:l="clr-namespace:LocalizatorHelper;assembly=LocalizatorHelper"
+             xmlns:helpers="clr-namespace:Kaleidoscope.Helpers"             
+             xmlns:dp="clr-namespace:Kaleidoscope.ViewDependencyProperty"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Dark.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Yellow.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.LightBlue.xaml" />
+                <!--<ResourceDictionary Source="pack://application:,,,/ShowMeTheXAML.AvalonEdit;component/Themes/xamldisplayer.xaml" />-->
+            </ResourceDictionary.MergedDictionaries>
+            
+            <l:LocalisationHelper x:Key="helper"></l:LocalisationHelper>
+            <helpers:ColorSet x:Key="ColorSet"/>
+            <helpers:Settings x:Key="Settings"/>
+            <dp:DataGridViewDepProp x:Key="DataGridViewDepProp"/>
+            <dp:DialogViewDepProp x:Key="DialogViewDepProp"/>
+            <dp:ContentViewDepProp x:Key="ContentViewDepProp" />
+
+            <Style x:Key="ButtonFlatTheme" TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatButton}">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Source={StaticResource Settings}, Path=AppIsDark}" Value="False">
+                        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkBrush}"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Source={StaticResource Settings}, Path=AppIsDark}" Value="True">
+                        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueLightBrush}"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style TargetType="{x:Type ContextMenu}" BasedOn="{StaticResource MaterialDesignContextMenu}">
+                <Setter Property="TextBlock.FontSize" Value="12"/>
+            </Style>
+            <Style TargetType="{x:Type MenuItem}" BasedOn="{StaticResource MaterialDesignMenuItem}">
+                <Setter Property="Padding" Value="16 0 16 0"/>
+            </Style>
+            
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

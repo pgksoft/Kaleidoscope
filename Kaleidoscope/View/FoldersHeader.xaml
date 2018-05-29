@@ -1,0 +1,92 @@
+﻿<UserControl x:Class="Kaleidoscope.View.FoldersHeader"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Kaleidoscope.View"
+             xmlns:mtdsgn="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="40" d:DesignWidth="500">
+    <UserControl.Resources>
+        <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style TargetType="Image">
+                <Setter Property="Height" Value="16"/>
+                <Setter Property="Width" Value="16"/>
+            </Style>
+            <Style TargetType="TextBlock">
+                <Setter Property="Margin" Value="5 0 0 0"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+            <Style x:Key="ToolBarButton" TargetType="Button" BasedOn="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
+                <Setter Property="Height" Value="28"/>
+                <Setter Property="Padding" Value="8 0"/>
+            </Style>
+            <Style x:Key="ToolBarTextBox" TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignTextBox}">
+                <Setter Property="Margin" Value="1 0 0 0"/>
+                <Setter Property="Width" Value="170"/>
+                <Setter Property="MaxWidth" Value="170"/>
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="CaretBrush" Value="{DynamicResource MaterialDesignBody}"/>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <ToolBarTray Grid.Column="0" VerticalAlignment="Center">
+            <ToolBar Style="{DynamicResource MaterialDesignToolBar}" ClipToBounds="False">
+                <Button Style="{StaticResource ToolBarButton}" Command="{Binding ClearConditionCommand}"
+                        ToolTip="{Binding Source={StaticResource helper}, Path=[DMLRes.CommanClearConditionsToolTip]}">
+                    <Image Source="{Binding Source={StaticResource  Settings}, Path=ImageCommandsFindDel}"/>
+                </Button>                
+                <TextBox Style="{StaticResource ToolBarTextBox}" 
+                         mtdsgn:HintAssist.Hint="{Binding Source={StaticResource helper}, Path=[DMLRes.ConditionHintTextBox]}" 
+                         Text="{Binding ConditionName, UpdateSourceTrigger=PropertyChanged}"/>
+                <Separator Margin="8 0"/>
+                <Button Command="{Binding AddCommand}" Style="{StaticResource ToolBarButton}">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="{Binding Source={StaticResource Settings}, Path=ImageUidRegularAdd}"/>
+                            <TextBlock Text="{Binding Source={StaticResource helper}, Path=[DMLRes.Insert]}"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+                <Button Command="{Binding UpdCommand}" Style="{StaticResource ToolBarButton}">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal" >
+                            <Image Source="{Binding Source={StaticResource Settings}, Path=ImageUidRegularUpd}"/>
+                            <TextBlock Text="{Binding Source={StaticResource helper}, Path=[DMLRes.Update]}"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+                <Button Command="{Binding DelCommand}" Style="{StaticResource ToolBarButton}">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="{Binding Source={StaticResource Settings}, Path=ImageUidRegularDel}"/>
+                            <TextBlock Text="{Binding Source={StaticResource helper}, Path=[DMLRes.Delete]}"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+                <Button Command="{Binding SyncCommand}" Style="{StaticResource ToolBarButton}">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="{Binding Source={StaticResource Settings}, Path=ImageUidRegularSync}"/>
+                            <TextBlock Text="{Binding Source={StaticResource helper}, Path=[DMLRes.Sync]}"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+                <Separator Margin="0"/>
+            </ToolBar>
+        </ToolBarTray>
+        <ContentControl Grid.Column="1" Content="{Binding ContentControlHeader}" 
+                        VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+    </Grid>
+</UserControl>

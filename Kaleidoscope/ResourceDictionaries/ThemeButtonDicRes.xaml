@@ -1,0 +1,25 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+                    xmlns:local="clr-namespace:Kaleidoscope.ResourceDictionaries">
+    
+    <Style x:Key="FlatButton" TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatButton}">
+        <Setter Property="Margin" Value="16 0"/>
+        <Setter Property="Command" Value="{x:Static md:DialogHost.CloseDialogCommand}"/>
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkBrush}"/>
+    </Style>
+    
+    <Style x:Key="FlatButtonEnabled" TargetType="Button" BasedOn="{StaticResource FlatButton}">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding ElementName=FieldName, Path=Text}" Value="">
+                <Setter Property="IsEnabled" Value="False"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding NotIsEnabled}" Value="true">
+                <Setter Property="IsEnabled" Value="False"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding IsProgress}" Value="true">
+                <Setter Property="IsEnabled" Value="False"/>
+            </DataTrigger>        </Style.Triggers>
+    </Style>
+
+</ResourceDictionary>

@@ -1,0 +1,249 @@
+﻿<UserControl x:Class="Kaleidoscope.View.ContentHeader"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mtdsgn="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:Kaleidoscope.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="50" d:DesignWidth="700">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ComboBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style x:Key="ToolBarButton" TargetType="Button" BasedOn="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
+                <Setter Property="Height" Value="28"/>
+                <Setter Property="Padding" Value="8 0"/>
+                <Setter Property="Margin" Value="0 0 8 0" />
+            </Style>
+
+            <Style TargetType="TextBlock">
+                <Setter Property="Margin" Value="5 0"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="FontWeight" Value="Medium"/>
+            </Style>
+
+            <Style TargetType="ComboBox" BasedOn="{StaticResource MaterialDesignComboBox}">
+                <Setter Property="FontWeight" Value="Medium"/>
+                <Setter Property="Width" Value="Auto"/>
+            </Style>
+
+            <Style TargetType="Slider" BasedOn="{StaticResource MaterialDesignSlider}">
+                <Setter Property="Margin" Value="0 0 16 0"/>
+                <Setter Property="Orientation" Value="Horizontal"/>
+                <Setter Property="Width" Value="120"/>
+                <Setter Property="Minimum" Value="{Binding ContentItemSizeMin}"/>
+                <Setter Property="Maximum" Value="{Binding ContentItemSizeMax}"/>
+            </Style>
+
+            <Style x:Key="ImageActionToggleButton" TargetType="Image">
+                <Setter Property="Width" Value="22"/>
+                <Setter Property="Height" Value="22"/>
+                <Setter Property="Stretch" Value="Uniform"/>
+            </Style>
+
+            <Style x:Key="ImageLabel" TargetType="Image">
+                <Setter Property="Width" Value="21"/>
+                <Setter Property="Height" Value="21"/>
+                <Setter Property="Stretch" Value="Uniform"/>
+                <Setter Property="Margin" Value="0"/>
+                <Setter Property="Visibility" Value="{Binding SeparatelyVisibility}"/>
+            </Style>
+
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid VerticalAlignment="Center" Margin="0 0 0 2" HorizontalAlignment="Stretch">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        
+        <WrapPanel Grid.Column="0">
+
+            <Button Style="{StaticResource ToolBarButton}" 
+                    Command="{Binding RepeatLoadingContentCommand}" 
+                    ToolTip="{Binding Source={StaticResource helper}, Path=[ImagesRes.HeaderControlRepeatLoadingContent]}">
+                <mtdsgn:PackIcon Kind="Repeat" Width="24" Height="24"/>
+            </Button>
+
+            <ToggleButton Style="{StaticResource MaterialDesignActionToggleButton}" 
+                          Margin="0 0 16 0" Visibility="{Binding ButtonIsEnableRefreshContentVisibility}"
+                          VerticalAlignment="Top" IsChecked="{Binding IsEnableRefreshContent}"
+                          ToolTip="{Binding Source={StaticResource helper}, Path=[ImagesRes.HeaderControlButtonIsEnableRefreshContentVisibility]}">
+                <ToggleButton.Content>
+                    <Image Source="{Binding Source={StaticResource Settings}, Path=ImageDisableRefreshContent}"
+                           Style="{StaticResource ImageActionToggleButton}" />
+                </ToggleButton.Content>
+                <mtdsgn:ToggleButtonAssist.OnContent>
+                    <mtdsgn:PackIcon Kind="Reload"/>
+                </mtdsgn:ToggleButtonAssist.OnContent>
+            </ToggleButton>
+
+            <ToggleButton Style="{StaticResource MaterialDesignActionToggleButton}" 
+                          Margin="0 0 16 0"
+                          VerticalAlignment="Top" IsChecked="{Binding IsKindContent}"
+                          ToolTip="{Binding Source={StaticResource helper}, Path=[ImagesRes.HeaderControlButtonShowTypeContent]}">
+                <ToggleButton.Content>
+                    <Image Source="{Binding Source={StaticResource Settings}, Path=ImageContentImages}"
+                           Style="{StaticResource ImageActionToggleButton}" />
+                </ToggleButton.Content>
+                <mtdsgn:ToggleButtonAssist.OnContent>
+                    <Image Source="{Binding Source={StaticResource Settings}, Path=ImageContentMovies}" 
+                           Style="{StaticResource ImageActionToggleButton}" />
+                </mtdsgn:ToggleButtonAssist.OnContent>
+            </ToggleButton>
+
+            <ToggleButton Style="{StaticResource MaterialDesignActionToggleButton}" 
+                          Margin="0 0 16 0"
+                          VerticalAlignment="Top" IsChecked="{Binding IsModeShowContent}"
+                          ToolTip="{Binding Source={StaticResource helper}, Path=[ImagesRes.HeaderControlButtonModeShowContent]}">
+                <ToggleButton.Content>
+                    <Image Source="{Binding Source={StaticResource Settings}, Path=ImageModeShowContentList}"
+                           Style="{StaticResource ImageActionToggleButton}" />
+                </ToggleButton.Content>
+                <mtdsgn:ToggleButtonAssist.OnContent>
+                    <Image Source="{Binding Source={StaticResource Settings}, Path=ImageModeShowContentOneFromList}" 
+                           Style="{StaticResource ImageActionToggleButton}" />
+                </mtdsgn:ToggleButtonAssist.OnContent>
+            </ToggleButton>
+
+            <mtdsgn:PopupBox Style="{StaticResource MaterialDesignMultiFloatingActionPopupBox}" 
+                             Width="32" Height="32" Margin="0 0 16 0" Padding="0" PopupMode="MouseOver"
+                             ToolTip="{Binding Source={StaticResource helper}, Path=[ImagesRes.HeaderControlPopupBoxPagesManager]}"
+                             Visibility="{Binding PagesManagerPanelVisibility}"
+                             PlacementMode="BottomAndAlignCentres" >
+                <mtdsgn:PopupBox.ToggleContent>
+                    <mtdsgn:PackIcon Kind="ImageMultiple" Width="21" Height="21"/>
+                </mtdsgn:PopupBox.ToggleContent>
+                <mtdsgn:PopupBox.ToggleCheckedContent>
+                    <mtdsgn:PackIcon Kind="MenuDownOutline" Width="21" Height="21"/>
+                </mtdsgn:PopupBox.ToggleCheckedContent>
+                <StackPanel>
+                    <Button Width="28" Height="28" Command="{Binding PageFirstCommand}"
+                            ToolTip="{Binding Source={StaticResource helper}, Path=[ImagesRes.HeaderControlPagesManagerButtonFirst]}">
+                        <mtdsgn:PackIcon Kind="PageFirst"/>
+                    </Button>
+                    <Button Width="28" Height="28" Command="{Binding PageStepBackwardCommand}"
+                            ToolTip="{Binding Source={StaticResource helper}, Path=[ImagesRes.HeaderControlPagesManagerButtonPrevious]}">
+                        <mtdsgn:PackIcon Kind="StepBackward"/>
+                    </Button>
+                    <Button Width="28" Height="28" Command="{Binding PageStepForwardCommand}"
+                            ToolTip="{Binding Source={StaticResource helper}, Path=[ImagesRes.HeaderControlPagesManagerButtonNext]}">
+                        <mtdsgn:PackIcon Kind="StepForward"/>
+                    </Button>
+                    <Button Width="28" Height="28" Command="{Binding PageLastCommand}"
+                            ToolTip="{Binding Source={StaticResource helper}, Path=[ImagesRes.HeaderControlPagesManagerButtonLast]}">
+                        <mtdsgn:PackIcon Kind="PageLast"/>
+                    </Button>
+                </StackPanel>
+            </mtdsgn:PopupBox>
+
+            <TextBlock Text="{Binding PagesManagerCurrentStateCaption}" VerticalAlignment="Center" 
+                       Margin="0 0 16 0" Width="Auto"/>
+
+            <ToggleButton Style="{StaticResource MaterialDesignActionToggleButton}" 
+                          Margin="0 0 16 0" 
+                          VerticalAlignment="Top" IsChecked="{Binding IsChangeSizeItemSeparately}"
+                          ToolTip="{Binding Source={StaticResource helper}, Path=[ImagesRes.HeaderControlButtonModeChangeSizeItem]}">
+                <ToggleButton.Content>
+                    <Image Source="{Binding Source={StaticResource Settings}, Path=ImageSizeBoth}"
+                           Style="{StaticResource ImageActionToggleButton}" />
+                </ToggleButton.Content>
+                <mtdsgn:ToggleButtonAssist.OnContent>
+                    <Image Source="{Binding Source={StaticResource Settings}, Path=ImageSizeSeparately}" 
+                           Style="{StaticResource ImageActionToggleButton}" />
+                </mtdsgn:ToggleButtonAssist.OnContent>
+            </ToggleButton>
+
+            <!--Width-->
+            <Image Source="{Binding ImageChangeSizeWidth}"
+                   Style="{DynamicResource ImageLabel}">
+            </Image>
+            <!--<TextBlock Margin="0 0 8 0" Text="{Binding Source={StaticResource helper}, Path=[ImagesRes.HeaderControlCaptionWidthItem]}" />-->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="{Binding ContentItemSizeMin}" 
+                               Style="{StaticResource MaterialDesignCaptionTextBlock}" 
+                               VerticalAlignment="Bottom" FontSize="9"/>
+                    <TextBlock Width="Auto" HorizontalAlignment="Center" Grid.Column="1" FontSize="11"
+                               Text="{Binding CaptionRatioSizeItem}" />
+                    <TextBlock Grid.Column="3" Text="{Binding ContentItemSizeMax}" 
+                               Style="{StaticResource MaterialDesignCaptionTextBlock}" 
+                               Margin="0 0 8 0"
+                               VerticalAlignment="Bottom" FontSize="9"/>
+                </Grid>
+                <Slider Name="ItemWidth" Grid.Row="1"
+                        Value="{Binding SelectedSizeWidthItem}" Height="18" VerticalAlignment="Bottom" />
+            </Grid>
+
+            <!--Height-->
+            <Image Source="{Binding ImageChangeSizeHeight}" 
+                   Style="{StaticResource ImageLabel}"/>
+            <!--<TextBlock Margin="16 0 8 0" Text="{Binding Source={StaticResource helper}, Path=[ImagesRes.HeaderControlCaptionHeightItem]}" />-->
+            <Grid Visibility="{Binding SeparatelyVisibility}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="{Binding ContentItemSizeMin}" 
+                               Style="{StaticResource MaterialDesignCaptionTextBlock}" 
+                               VerticalAlignment="Bottom" FontSize="9"/>
+                    <TextBlock Width="Auto" HorizontalAlignment="Center" Grid.Column="1" FontSize="11"
+                               Text="{Binding ElementName=ItemHeight, Path=Value}"/>
+                    <TextBlock Grid.Column="3" Text="{Binding ContentItemSizeMax}" 
+                               Style="{StaticResource MaterialDesignCaptionTextBlock}" 
+                               Margin="0 0 8 0"
+                               VerticalAlignment="Bottom" FontSize="9"/>
+                </Grid>
+                <Slider Name="ItemHeight" Grid.Row="1"  
+                        Value="{Binding SelectedSizeHeightItem}" />
+            </Grid>
+        </WrapPanel>
+
+        <StackPanel Grid.Column="1" Orientation="Horizontal" >
+            <mtdsgn:PopupBox StaysOpen="True" PlacementMode="BottomAndAlignRightEdges" 
+                             VerticalAlignment="Center" Padding="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.Resources>
+                        <Style TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignCaptionTextBlock}"/>
+                    </Grid.Resources>
+                    <mtdsgn:ColorZone Grid.Row="0" Mode="Accent" mtdsgn:ShadowAssist.ShadowDepth="Depth2">
+                        <StackPanel Orientation="Horizontal">
+                            <mtdsgn:PackIcon Kind="Settings" Margin="8" Width="21" Height="21" />
+                            <TextBlock Margin="8 0" VerticalAlignment="Center"
+                               Text="{Binding Source={StaticResource helper}, Path=[ImagesRes.OptionsManagerContentCaption]}"/>
+                        </StackPanel>
+                    </mtdsgn:ColorZone>
+                    <ContentControl Grid.Row="1" Margin=" 0 8 0 0" Content="{Binding OptionsMediaUserControl}"/>
+                </Grid>
+            </mtdsgn:PopupBox>
+        </StackPanel>
+        
+    </Grid>
+</UserControl>

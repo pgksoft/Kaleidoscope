@@ -1,0 +1,74 @@
+﻿<UserControl x:Class="Kaleidoscope.View.Directories"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mtdsgn="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:clr="clr-namespace:MaterialDesignColors;assembly=MaterialDesignColors"
+             xmlns:local="clr-namespace:Kaleidoscope.View"
+             xmlns:main="clr-namespace:Kaleidoscope"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="700">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.DataGrid.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Kaleidoscope;component/ResourceDictionaries/DataGridDicRes.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid>
+        <DataGrid Name="DicGrid" ItemsSource="{Binding Directories}" 
+                  ColumnHeaderStyle="{StaticResource MDDataGridColumnHeader}"
+                  IsReadOnly="True" SelectionMode="{Binding SelectionMode}" AutoGenerateColumns="False" 
+                  BorderThickness="1" Padding="3" Margin="3 0 3 3"                  
+                  GridLinesVisibility="All" VerticalGridLinesBrush="{DynamicResource MaterialDesignSelection}"
+                  SelectedIndex="{Binding SelectedIndex}"
+                  mtdsgn:DataGridAssist.CellPadding="4 2 2 2" 
+                  mtdsgn:DataGridAssist.ColumnHeaderPadding="3">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDoubleClick">
+                    <i:InvokeCommandAction Command="{Binding UpdCommand}"/>
+                </i:EventTrigger>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction Command="{Binding SelectionChangedCommand}"
+                                           CommandParameter="{Binding ElementName=DicGrid, Path=SelectedItems}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Command="{Binding AddCommand}" Header="{Binding Source={StaticResource helper}, Path=[DMLRes.Insert]}" >
+                        <MenuItem.Icon>
+                            <Image Source="{Binding Source={StaticResource Settings}, Path=ImageUidRegularAdd}"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Command="{Binding UpdCommand}" Header="{Binding Source={StaticResource helper}, Path=[DMLRes.Update]}" >
+                        <MenuItem.Icon>
+                            <Image Source="{Binding Source={StaticResource Settings}, Path=ImageUidRegularUpd}"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Command="{Binding DelCommand}" Header="{Binding Source={StaticResource helper}, Path=[DMLRes.Delete]}" >
+                        <MenuItem.Icon>
+                            <Image Source="{Binding Source={StaticResource Settings}, Path=ImageUidRegularDel}"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <Separator/>
+                    <MenuItem Command="{Binding ClearConditionCommand}" Header="{Binding Source={StaticResource helper}, Path=[DMLRes.CommanClearConditionsToolTip]}">
+                        <MenuItem.Icon>
+                            <Image Source="{Binding Source={StaticResource Settings}, Path=ImageCommandsFindDel}"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Name}" 
+                                    SortDirection="{Binding Source={StaticResource DataGridViewDepProp}, Path=Instance.SortDirectionColumnName, Mode=TwoWay}"
+                                    Width="{Binding Source={StaticResource DataGridViewDepProp}, Path=Instance.WidthColumnName}"
+                                    Header="{Binding Source={StaticResource DataGridViewDepProp}, Path=Instance.HeaderColumnName}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+
+</UserControl>

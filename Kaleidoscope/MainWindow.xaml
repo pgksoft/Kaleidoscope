@@ -1,0 +1,93 @@
+﻿<Window x:Class="Kaleidoscope.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Kaleidoscope"
+        xmlns:mtdsgn="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:view="clr-namespace:Kaleidoscope.View"
+        xmlns:helpers="clr-namespace:Kaleidoscope.Helpers"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        mc:Ignorable="d"        
+        Title="{Binding Source={StaticResource helper}, Path=[MainWindowRes.Title]}" 
+        Height="350" Width="525">
+    <mtdsgn:DialogHost Name="MainDialogHost" Identifier="MainDialog">
+        <mtdsgn:DrawerHost IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}">
+            <mtdsgn:DrawerHost.LeftDrawerContent>
+                <DockPanel MinWidth="50" Background="{DynamicResource SecondaryAccentBrush}">
+                    <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" 
+                                  Foreground="{DynamicResource SecondaryAccentForegroundBrush}"
+                                  DockPanel.Dock="Top" Margin="3" Width="25" Height="25" 
+                                  VerticalAlignment="Top" HorizontalAlignment="Right" 
+                                  IsChecked="{Binding ElementName=MenuToggleButton, Path=IsChecked, Mode=TwoWay}" />
+                    <ListBox x:Name="MainMenuItemsListBox" SelectedIndex="0"  
+                             Foreground="{DynamicResource SecondaryAccentForegroundBrush}"
+                             ItemsSource="{Binding MainMenuItems}"
+                             PreviewMouseLeftButtonUp="UIElement_OnPreviewMouseButtonUp">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate DataType="helpers:MainMenuItem">
+                                <TextBlock Text="{Binding Name}"  Margin="16 0 16 0"
+                                           Style="{StaticResource MaterialDesignBody2TextBlock}"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </DockPanel>
+            </mtdsgn:DrawerHost.LeftDrawerContent>
+            <DockPanel>
+                <mtdsgn:ColorZone Padding="8 3" Visibility="{Binding ColorZoneVisibility}" 
+                                  mtdsgn:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" DockPanel.Dock="Top">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" IsChecked="False"
+                                      x:Name="MenuToggleButton" Width="25" Height="25" />
+                        <WrapPanel Grid.Column="1" HorizontalAlignment="{Binding ElementName=MainMenuItemsListBox, Path=SelectedItem.Content.DataContext.HeaderControlHorizontalAlignment}">
+                            <ContentControl Content="{Binding ElementName=MainMenuItemsListBox, Path=SelectedItem.Content.DataContext.HeaderControl}"/>
+                        </WrapPanel>
+                        <StackPanel Grid.Column="2" Orientation="Horizontal">
+                            <TextBlock Text="{Binding BusyMemoryCaption}" VerticalAlignment="Center"/>
+                            <mtdsgn:PopupBox StaysOpen="true" PlacementMode="BottomAndAlignRightEdges" Height="25" VerticalAlignment="Top">
+                                <StackPanel HorizontalAlignment="Left">
+                                    <StackPanel.Resources>
+                                        <Style TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignCaptionTextBlock}">
+                                        </Style>
+                                    </StackPanel.Resources>
+                                    <TextBlock Margin="16 0" Text="{Binding Source={StaticResource helper}, Path=[MainWindowRes.AddOptionsCaption]}"/>
+                                    <Separator/>
+                                    <ComboBox Margin="16 0" Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                                              mtdsgn:HintAssist.Hint="{Binding Source={StaticResource helper}, Path=[MainWindowRes.AddOptionsLangTitle]}"
+                                              IsDropDownOpen="{Binding IsDropDownOpenLocalization}"
+                                              ItemsSource="{Binding ListOfLocalization}"
+                                              SelectedIndex="{Binding SelectedIndexLocalization}">
+                                        <ComboBox.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <VirtualizingStackPanel />
+                                            </ItemsPanelTemplate>
+                                        </ComboBox.ItemsPanel>
+                                    </ComboBox>
+                                    <StackPanel Margin="16 8 16 8">
+                                        <TextBlock Margin="0 0 0 3" Text="{Binding Source={StaticResource helper}, Path=[SettingOptionsRes.PaletteThemeCaption]}"/>
+                                        <view:PaletteTheme />
+                                    </StackPanel>
+                                </StackPanel>
+                            </mtdsgn:PopupBox>
+                        </StackPanel>
+                    </Grid>
+                </mtdsgn:ColorZone>
+                <Grid x:Name="mainGrid">
+                    <ScrollViewer Grid.Row="1" 
+                                  HorizontalScrollBarVisibility="{Binding ElementName=MainMenuItemsListBox, Path=SelectedItem.HorizontalScrollBarVisibilityRequirement}"
+                                  VerticalScrollBarVisibility="{Binding ElementName=MainMenuItemsListBox, Path=SelectedItem.VerticalScrollBarVisibilityRequirement}" 
+                                  Padding="{Binding ElementName=MainMenuItemsListBox, Path=SelectedItem.MarginRequirement}">
+                        <ContentControl Content="{Binding ElementName=MainMenuItemsListBox, Path=SelectedItem.Content}" />
+                    </ScrollViewer>
+                </Grid>
+            </DockPanel>
+        </mtdsgn:DrawerHost>
+    </mtdsgn:DialogHost>
+</Window>
